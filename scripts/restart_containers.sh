@@ -2,6 +2,6 @@
 
 cd docker
 
-docker compose down
+sudo docker compose down
 
-docker compose up -d --build
+sudo docker compose up -d --build

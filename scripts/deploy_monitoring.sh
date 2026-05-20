@@ -8,4 +8,4 @@ git pull origin $(git branch --show-current)
 
 cd docker
 
-docker compose up -d --build
+sudo docker compose up -d --build
