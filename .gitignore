@@ -20,3 +20,10 @@ docker-compose.override.yml
 *.swp
 awscliv2.zip
 aws
+*.tfstate
+*.tfstate.backup
+.terraform/
+terraform.tfvars
+*.pem
+.env
+node_modules/
