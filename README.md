@@ -18,17 +18,25 @@ This project demonstrates:
 
 # Tech Stack
 
-| Category        | Technologies            |
-| --------------- | ----------------------- |
-| Cloud           | AWS EC2                 |
-| IaC             | Terraform               |
-| Monitoring      | Prometheus              |
-| Visualization   | Grafana                 |
-| Containers      | Docker & Docker Compose |
-| CI/CD           | GitHub Actions          |
-| OS              | Linux (Ubuntu)          |
-| Scripting       | Bash                    |
-| Version Control | Git & GitHub            |
+**Infrastructure as Code:**
+
+![Terraform](https://img.shields.io/badge/Terraform-7B42BC?style=for-the-badge&logo=terraform&logoColor=white)
+
+![HCL](https://img.shields.io/badge/Language-HCL-FF9900?style=for-the-badge)
+
+**Containerization:**
+
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+
+**CI/CD & Automation:**
+
+![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)
+
+![Shell Scripting](https://img.shields.io/badge/Scripts-Bash-4EAA25?style=for-the-badge&logo=gnubash&logoColor=white)
+
+**Cloud Platform:**
+
+![Cloud Provider](https://img.shields.io/badge/Cloud%20Provider-AWS%20|%20GCP%20|%20Azure-F7B60B?style=for-the-badge&logo=amazon-aws&logoColor=white) <!-- TODO: Specify actual cloud provider(s) if known from deeper analysis -->
 
 ---
 
