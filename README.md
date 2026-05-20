@@ -36,7 +36,7 @@ This project demonstrates:
 
 **Cloud Platform:**
 
-![Cloud Provider](https://img.shields.io/badge/Cloud%20Provider-AWS%20|%20GCP%20|%20Azure-F7B60B?style=for-the-badge&logo=amazon-aws&logoColor=white) <!-- TODO: Specify actual cloud provider(s) if known from deeper analysis -->
+![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white) 
 
 ---
 
@@ -355,27 +355,7 @@ Password: admin
 
 ---
 
-# Infrastructure Destruction
 
-## Destroy DEV
-
-```bash
-cd terraform/environments/dev
-
-bash ../../scripts/destroy.sh
-```
-
----
-
-## Destroy PROD
-
-```bash
-cd terraform/environments/prod
-
-bash ../../scripts/destroy.sh
-```
-
----
 
 # Important Notes
 
@@ -421,9 +401,6 @@ This project helped build hands-on experience with:
 # Author
 
 Harsh Shrimali
-
-GitHub: [https://github.com/hs2002-18](https://github.com/hs2002-18)
-
 ---
 
 # License
