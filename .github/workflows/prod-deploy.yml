@@ -1,0 +1,74 @@
+name: Production Deployment
+
+on:
+  push:
+    branches:
+      - prod
+
+jobs:
+  terraform-and-deploy:
+
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: terraform/environments/prod
+
+    steps:
+
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-south-1
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Make Terraform Scripts Executable
+        run: chmod +x ../../scripts/*.sh
+
+      - name: Terraform Init
+        run: bash ../../scripts/init.sh
+
+      - name: Terraform Plan
+        run: bash ../../scripts/plan.sh
+
+      - name: Terraform Apply
+        run: bash ../../scripts/apply.sh
+
+      - name: Get EC2 Public IP
+        run: |
+          echo "EC2_IP=$(terraform output -raw public_ip)" >> $GITHUB_ENV
+
+      - name: Setup SSH Key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/ec2_key.pem
+          chmod 600 ~/.ssh/ec2_key.pem
+
+      - name: Deploy Monitoring Stack
+        run: |
+          ssh -o StrictHostKeyChecking=no \
+              -o ConnectTimeout=30 \
+              -i ~/.ssh/ec2_key.pem \
+              ubuntu@${{ env.EC2_IP }} << 'EOF'
+
+            if [ ! -d "Cloud-Observability-Platform" ]; then
+              git clone -b prod https://github.com/${{ github.repository }}.git
+            fi
+
+            cd Cloud-Observability-Platform
+
+            chmod +x scripts/*.sh
+            chmod +x terraform/scripts/*.sh
+
+            ./scripts/setup_server.sh
+
+            ./scripts/deploy_monitoring.sh
+
+          EOF
